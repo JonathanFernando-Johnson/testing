@@ -41,7 +41,14 @@ public class MyPoint {
 	 * @param pt The IMyPoint, if null the default value (0,0) will be used.
 	 */
 	public MyPoint(final MyPoint pt) {
-		this(pt.x, pt.y);
+		super();
+		if(pt == null) {
+			this.x = 0;
+			this.y = 0;
+		}else {
+			this.x = pt.getX();
+			this.y = pt.getY();
+		}		
 	}
 
 
@@ -50,7 +57,9 @@ public class MyPoint {
 	 * @param newX The new X coordinate. Must be valid (not equal Double.NaN), otherwise nothing is done.
 	 */
 	public void setX(final double newX) {
-		x = newX;
+		if (newX != Double.NaN) {
+			x = newX;
+		}		
 	}
 
 
@@ -59,7 +68,9 @@ public class MyPoint {
 	 * @param newY The new Y coordinate. Must be valid (not equal Double.NaN), otherwise nothing is done.
 	 */
 	public void setY(final double newY) {
-		x = newY;
+		if (newY != Double.NaN) {
+			y = newY;
+		}
 	}
 
 
