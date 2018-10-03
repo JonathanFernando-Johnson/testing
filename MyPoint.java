@@ -108,7 +108,10 @@ public class MyPoint {
 	 */
 	public MyPoint horizontalSymmetry(final MyPoint origin) {
 		if(origin == null) throw new IllegalArgumentException();
-		return new MyPoint(2d * origin.getX() - x, y);
+		if (origin.getX() != this.getX()) {
+			return new MyPoint(2d * origin.getX() - x, y);
+		}
+		return this;
 	}
 
 
@@ -191,7 +194,7 @@ public class MyPoint {
 	 */
 	public MyPoint centralSymmetry(final MyPoint centre) {
 		if(centre == null) throw new IllegalArgumentException();
-		return rotatePoint(centre, 2d * Math.PI);
+		return rotatePoint(centre, Math.PI);
 	}
 
 
@@ -211,8 +214,10 @@ public class MyPoint {
 	 * @param ty The Y translation.
 	 */
 	public void translate(final double tx, final double ty) {
-		setX(x + tx);
-		setY(y + ty);
+		if(!(Double.isNaN(tx) ||  Double.isNaN(ty))) {
+			setX(x + tx);
+			setY(y + ty);
+		}		
 	}
 
 
